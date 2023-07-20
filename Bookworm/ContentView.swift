@@ -17,7 +17,7 @@ struct ContentView: View {
             List {
                 ForEach(books) { book in
                     NavigationLink {
-                        Text(book.title ?? "Unknown Title")
+                        DetailView(book: book)
                     } label: {
                         HStack {
                             EmojiRatingView(rating: book.rating)
@@ -34,21 +34,20 @@ struct ContentView: View {
                     }
                 }
             }
-//            Text("Count: \(books.count)")
-//                .navigationTitle("Bookworm")
-//                .toolbar {
-//                    ToolbarItem(placement: .navigationBarTrailing) {
-//                        Button {
-//                            showingAddScreen.toggle()
-//                        } label: {
-//                            Label("Add Book", systemImage: "plus")
-//                        }
-//                    }
-//
-//                }
-//                .sheet(isPresented: $showingAddScreen) {
-//                    AddBookView()
-//                }
+            .navigationTitle("Bookworm")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showingAddScreen.toggle()
+                    } label: {
+                        Label("Add Book", systemImage: "plus")
+                    }
+                }
+                
+            }
+            .sheet(isPresented: $showingAddScreen) {
+                AddBookView()
+            }
         }
     }
 }
